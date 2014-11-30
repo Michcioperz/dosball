@@ -1,3 +1,5 @@
 DOSBALL
 *.o
 *.ppu
+*.bak
+*.exe

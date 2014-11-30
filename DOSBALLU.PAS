@@ -3,12 +3,13 @@ Unit dosballu;
 
 Interface
 
-Var 
+Var
   ballsila: integer;
   ballcel, ballunlock: integer;
   ballile: longint;
   ballgol: boolean;
   ballmenui: integer;
+  killswitch: boolean;
 Procedure ballilosc;
 Procedure ballgool;
 Procedure ballkarne;
@@ -17,34 +18,34 @@ Procedure ballmenu;
 Implementation
 Procedure ballilosc;
 Begin
-  writeln('===== Komunikat =====');
-  writeln('= Trafionych goli:',ballile,' =');
+  writeln('==== Information ====');
+  writeln('= Goals scored:  ',ballile,'  =');
   writeln('=====================');
 End;
 Procedure ballgool;
 Begin
-  writeln('======== Komunikat ========');
-  writeln('= GOOOOOOOOOOOOOOOOOOOOL! =');
+  writeln('======= Information =======');
+  writeln('= GOOOOOOOOOOOOOAAAAAAAL! =');
   writeln('===========================');
   ballile := ballile+1;
 End;
 Procedure ballkarne;
 Begin
-  writeln('======= Strzaly =======');
+  writeln('======= TheGame =======');
   writeln('=     /---------\     =  \');
   writeln('=     | 1  2  3 |     =   \');
-  writeln('=     |         |     =    >  <= to jest bramka');
+  writeln('=     |         |     =    >  <= this is the goal');
   writeln('=     | 4  5  6 |     =   /');
   writeln('=     \---------/     =  /');
   writeln('=                     =');
   writeln('=                     =');
   writeln('=                     =');
-  writeln('=          o          =       <= tu jest pilka');
-  writeln('=          A          =       <= to jestes TY');
+  writeln('=          o          =       <= this is the ball');
+  writeln('=          A          =       <= this is YOU');
   writeln('=======================');
-  write('= Kierunek (1-6):');
+  write('= Target (1-6):');
   readln(ballcel);
-  write('= Sila (1-10):');
+  write('= Power (1-10):');
   readln(ballsila);
   writeln('=======================');
   If ballsila = 5 Then
@@ -54,8 +55,8 @@ Begin
       Then ballgool
   Else
     Begin
-      writeln('====== Komunikat ======');
-      writeln('= Pudlo! Niestety...  =');
+      writeln('===== Information =====');
+      writeln('= Missed, no goal...  =');
       writeln('=======================');
     End;
   ballilosc;
@@ -63,14 +64,14 @@ End;
 Procedure ballmenu;
 Begin
   writeln('========== DOSball ==========');
-  writeln('= Rozpocznij gre............1');
-  writeln('= Wyjdz z gry...............0');
+  writeln('= Play......................1');
+  writeln('= Exit......................0');
   writeln('=============================');
   readln(ballmenui);
-  Case ballmenui Of 
+  Case ballmenui Of
     1: ballkarne;
-    0:;
-    Else writeln('Bledny wybor!');
+    0: killswitch := true;
+    Else writeln('Incorrect choice!');
   End;
 End;
 End.
